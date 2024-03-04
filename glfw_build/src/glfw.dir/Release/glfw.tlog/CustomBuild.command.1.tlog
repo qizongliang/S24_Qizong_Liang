@@ -1,0 +1,10 @@
+^C:\USERS\QIZON\SOURCE\REPOS\S24_QIZONG_LIANG\GLFW\SRC\CMAKELISTS.TXT
+setlocal
+D:\cmake-3.29.0-rc2-windows-x86_64\cmake-3.29.0-rc2-windows-x86_64\bin\cmake.exe -SC:/Users/qizon/source/repos/S24_Qizong_Liang/glfw -BC:/Users/qizon/source/repos/S24_Qizong_Liang/glfw_build --check-stamp-file C:/Users/qizon/source/repos/S24_Qizong_Liang/glfw_build/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
