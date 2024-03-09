@@ -6,15 +6,14 @@ class MyGame : public Notreal::NotrealApplication
 {
 	virtual void Initialize() override 
 	{
-		my_window.Create(1000, 800);
+
 	}
 
 	virtual void OnUpdate() override
 	{
-		std::cout << "engine is running" << std::endl;
+		std::cout << "window width "<< Notreal::NotrealWindow::GetWindow()->GetWidth() << "window height " << Notreal::NotrealWindow::GetWindow()->GetHeight() << std::endl;
 	}
 private:
-	Notreal::NotrealWindow my_window;
 
 };
 

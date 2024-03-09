@@ -9,6 +9,8 @@ namespace Notreal
 	public:
 		WindowGLFW();
 		virtual void Create(int width, int height) override;
+		virtual void SwapBuffers() override;
+		virtual void PollEvents() override;
 		virtual int GetWidth() const override;
 		virtual int GetHeight() const override;
 		~WindowGLFW();

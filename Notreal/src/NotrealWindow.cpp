@@ -25,6 +25,22 @@ namespace Notreal
 		return mInstance;
 	}
 
+	void NotrealWindow::Shutdown()
+	{
+		if (mInstance)
+			delete mInstance;
+	}
+
+	void NotrealWindow::SwapBuffers()
+	{
+		mWindow->SwapBuffers();
+	}
+
+	void NotrealWindow::PollEvents()
+	{
+		mWindow->PollEvents();
+	}
+
 	void NotrealWindow::Create(int width, int height)
 	{
 		mWindow->Create(width, height);

@@ -14,7 +14,15 @@ namespace Notreal
 	{
 		mWindow = glfwCreateWindow(width, height, "MyGame", NULL, NULL);
 		assert(mWindow != NULL);
-
+		glfwMakeContextCurrent(mWindow);
+	}
+	void WindowGLFW::SwapBuffers()
+	{
+		glfwSwapBuffers(mWindow);
+	}
+	void WindowGLFW::PollEvents()
+	{
+		glfwPollEvents();
 	}
 	int WindowGLFW::GetWidth() const
 	{
