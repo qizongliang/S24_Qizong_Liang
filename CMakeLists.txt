@@ -7,6 +7,7 @@ set(CMAKE_CXX_MINIMUM_REQUIRED True)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
+add_subdirectory(glfw)
 add_subdirectory(Notreal)
 add_subdirectory(S24_Qizong_Liang)
 
