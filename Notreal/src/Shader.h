@@ -14,6 +14,10 @@ namespace Notreal
 
 		void Bind();
 
+		void setUniform2Ints(const std::string& uniformName, int val1, int val2);
+		void setUniform2Ints( std::string&& uniformName, int val1, int val2);
+
+
 	private:
 		std::unique_ptr<ShaderImplement> mImplementation;
 	};

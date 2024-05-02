@@ -15,6 +15,9 @@ namespace Notreal
 
 		virtual void Bind()override;
 
+		virtual void setUniform2Ints(const std::string& uniformName, int val1, int val2) override;
+		virtual void setUniform2Ints(std::string&& uniformName, int val1, int val2) override;
+
 	private:
 		unsigned int mShaderProg{ 0 };
 

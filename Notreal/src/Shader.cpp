@@ -26,4 +26,12 @@ namespace Notreal
 	{
 		mImplementation->Bind();
 	}
+	void Shader::setUniform2Ints(const std::string& uniformName, int val1, int val2)
+	{
+		mImplementation->SetUniform2Ints(uniformName,val1,val2);
+	}
+	void Shader::setUniform2Ints(std::string&& uniformName, int val1, int val2)
+	{
+		mImplementation->SetUniform2Ints(move(uniformName), val1, val2);
+	}
 }

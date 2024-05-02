@@ -105,6 +105,20 @@ namespace Notreal
 		glUseProgram(mShaderProg);
 	}
 
+	void ShaderOpenGL::setUniform2Ints(const std::string& uniformName, int val1, int val2)
+	{
+		glUseProgram(mShaderProg);
+		GLuint location{glGetUniformLocation(mShaderProg,uniformName.c_str())};
+		glUniform2i(location, val1, val2);
+	}
+
+	void ShaderOpenGL::setUniform2Ints(std::string&& uniformName, int val1, int val2)
+	{
+		glUseProgram(mShaderProg);
+		GLuint location{ glGetUniformLocation(mShaderProg,uniformName.c_str()) };
+		glUniform2i(location, val1, val2);
+	}
+
 	std::string ShaderOpenGL::ReadFile(const std::string& fileName)
 	{
 		std::string result;
