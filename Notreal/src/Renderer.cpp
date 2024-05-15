@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Renderer.h"
+#include"codeOpenGL/RendererOpenGL.h"
 
 namespace Notreal {
 	void Notreal::Renderer::Init()
@@ -19,4 +20,22 @@ namespace Notreal {
 		mInstance->mImplementation->Draw(pic, x, y);
 	}
 
+	void Renderer::Draw(Image& pic, Shader& shader, int x, int y)
+	{
+		mInstance->mImplementation->Draw(pic,shader, x, y);
+	}
+
+	void Renderer::ClearScreen()
+	{
+	}
+
+	Renderer::Renderer()
+	{
+#ifdef NOTREAL_OPENGL
+		mImplementation = std::unique_ptr<RendererImplement>{ new RendererOpenGL };
+#else
+		#only_openGL_is_supported_so_far
+
+#endif
+	}
 }

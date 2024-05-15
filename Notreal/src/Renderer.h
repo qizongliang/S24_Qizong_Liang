@@ -3,7 +3,7 @@
 #include "pch.h"
 #include "Utility.h"
 #include "Image.h"
-
+#include "RendererImplement.h"
 
 namespace Notreal 
 {
@@ -14,7 +14,8 @@ namespace Notreal
 		static Renderer* GetInstance();
 
 		static void Draw(Image& pic, int x, int y);
-		
+		static void Draw(Image& pic, Shader& shader,int x, int y);
+		static void ClearScreen();
 
 	private:
 		std::unique_ptr<RendererImplement> mImplementation;

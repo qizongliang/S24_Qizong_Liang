@@ -138,6 +138,7 @@
     <ClInclude Include="include\Notreal.h" />
     <ClInclude Include="src\codeGLFW\WindowGLFW.h" />
     <ClInclude Include="src\codeOpenGL\ImageOpenGL.h" />
+    <ClInclude Include="src\codeOpenGL\RendererOpenGL.h" />
     <ClInclude Include="src\codeOpenGL\ShaderOpenGL.h" />
     <ClInclude Include="src\Image.h" />
     <ClInclude Include="src\ImageImplement.h" />
@@ -145,6 +146,7 @@
     <ClInclude Include="src\NotrealWindow.h" />
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\RendererImplement.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\ShaderImplement.h" />
     <ClInclude Include="src\Utility.h" />
@@ -153,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="src\codeGLFW\WindowGLFW.cpp" />
     <ClCompile Include="src\codeOpenGL\ImageOpenGL.cpp" />
+    <ClCompile Include="src\codeOpenGL\RendererOpenGL.cpp" />
     <ClCompile Include="src\codeOpenGL\ShaderOpenGL.cpp" />
     <ClCompile Include="src\Image.cpp" />
     <ClCompile Include="src\NotrealApplication.cpp" />
@@ -169,7 +172,7 @@
       <Project>{6aeb25af-74be-4f16-9730-8584f1c68aac}</Project>
     </ProjectReference>
     <ProjectReference Include="..\glfw_build\src\glfw.vcxproj">
-      <Project>{4b483287-5d12-3f5e-9718-3bccb8397b3f}</Project>
+      <Project>{962cd09b-b235-3b4a-a8b4-de51017fcb62}</Project>
     </ProjectReference>
     <ProjectReference Include="..\stbi\stbi.vcxproj">
       <Project>{bbec1e28-c0e9-4c11-b69e-99f489be76dd}</Project>
