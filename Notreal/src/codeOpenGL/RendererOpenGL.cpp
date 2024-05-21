@@ -15,7 +15,8 @@ namespace Notreal
 			NOTREAL_ERROR("Failed to initialize GLAD");
 			return;
 		}
-		mShaderPtr = std::unique_ptr<Shader>{ new  Shader{ "../Assets/Shaders/defaultVertexShader.glsl","../Assets/Shaders/defaultFragmentShader.glsl" } };
+		mShaderPtr = std::unique_ptr<Shader>{ new  Shader{ "../Notreal/Assets/Shaders/defaultVertexShader.glsl","../Notreal/Assets/Shaders/defaultFragmentShader.glsl" } };
+		
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
@@ -110,7 +111,8 @@ namespace Notreal
 
 	void RendererOpenGL::ClearScreen()
 	{
-
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
 	}
 	
 }

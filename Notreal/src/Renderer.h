@@ -4,6 +4,7 @@
 #include "Utility.h"
 #include "Image.h"
 #include "RendererImplement.h"
+#include "Unit.h"
 
 namespace Notreal 
 {
@@ -15,6 +16,7 @@ namespace Notreal
 
 		static void Draw(Image& pic, int x, int y);
 		static void Draw(Image& pic, Shader& shader,int x, int y);
+		static void Draw(Unit& unit);
 		static void ClearScreen();
 
 	private:

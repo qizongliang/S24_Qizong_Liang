@@ -2,6 +2,7 @@
 #include "NotrealWindow.h"
 #include "codeGLFW/WindowGLFW.h"
 
+
 namespace Notreal
 {
 	NotrealWindow::NotrealWindow()
@@ -53,5 +54,17 @@ namespace Notreal
 	int NotrealWindow::GetHeight() const
 	{
 		return mWindow->GetHeight();
+	}
+	void NotrealWindow::SetKeyPressedCallback(std::function<void(const KeyPressed&)>& callbackFunc)
+	{
+		mWindow->SetKeyPressedCallback(callbackFunc);
+	}
+	void NotrealWindow::SetKeyReleasedCallback(std::function<void(const KeyReleased&)>& callbackFunc)
+	{
+		mWindow->SetKeyReleasedCallback(callbackFunc);
+	}
+	void NotrealWindow::SetWindowCloseCallback(std::function<void()>& callbackFunc)
+	{
+		mWindow->SetWindowCloseCallback(callbackFunc);
 	}
 }

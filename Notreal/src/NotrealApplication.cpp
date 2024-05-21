@@ -5,12 +5,24 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "stb_image.h"
+
+#include "Renderer.h"
 #include "Image.h"
 #include "Shader.h"
-#include"Renderer.h"
+#include "NotrealKeys.h"
 
 namespace Notreal 
 {
+	NotrealApplication::NotrealApplication()
+	{
+		//NotrealWindow::Init();
+		//NotrealWindow::GetWindow()->Create(1000, 800);
+
+		//Renderer::Init();
+
+		//SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
+		
+	}
 	void NotrealApplication::Initialize()
 	{
 
@@ -25,10 +37,11 @@ namespace Notreal
 	}
 	void NotrealApplication::Run()
 	{
-		Renderer::Init();
 
 		NotrealWindow::Init();
 		NotrealWindow::GetWindow()->Create(1000, 800);
+
+		Renderer::Init();
 
 		///////// Sharders ///////
 
@@ -40,13 +53,28 @@ namespace Notreal
 
 		Initialize();
 
-		while (true) 
+		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
+
+		int x{ 50 };
+
+		SetKeyPressedCallback([&x](const KeyPressed& event){
+			if (event.GetKeyCode() == NOTREAL_KEY_RIGHT)
+				x += 50;
+
+		});
+
+
+		while (mShouldContinue)
 		{
+			Renderer::ClearScreen();
+
 			OnUpdate();
 
-            Renderer::ClearScreen();
+            Renderer::Draw(pic, x, 100);
 
-            Renderer::Draw(pic, 200, 100);
+			
+			std::this_thread::sleep_until(mNextFrameTime);
+			mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
 			NotrealWindow::GetWindow()->SwapBuffers();
 			NotrealWindow::GetWindow()->PollEvents();
@@ -55,5 +83,22 @@ namespace Notreal
 		Shutdown();
 
 		NotrealWindow::Shutdown();
+	}
+
+	void NotrealApplication::SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc) 
+	{
+		NotrealWindow::GetWindow()->SetKeyPressedCallback(callbackFunc);
+	}
+	void NotrealApplication::SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc)
+	{
+		NotrealWindow::GetWindow()->SetKeyReleasedCallback(callbackFunc);
+	}
+	void NotrealApplication::SetWindowCloseCallback(std::function<void()> callbackFunc)
+	{
+		NotrealWindow::GetWindow()->SetWindowCloseCallback(callbackFunc);
+	}
+	void NotrealApplication::DefaultWindowCloseHandler()
+	{
+		mShouldContinue = false;
 	}
 }

@@ -11,7 +11,8 @@ class MyGame : public Notreal::NotrealApplication
 
 	virtual void OnUpdate() override
 	{
-		std::cout << "window width "<< Notreal::NotrealWindow::GetWindow()->GetWidth() << "window height " << Notreal::NotrealWindow::GetWindow()->GetHeight() << std::endl;
+		//Notreal::Renderer::Draw(pic, x, 100);
+		//std::cout << "window width "<< Notreal::NotrealWindow::GetWindow()->GetWidth() << "window height " << Notreal::NotrealWindow::GetWindow()->GetHeight() << std::endl;
 	}
 private:
 
