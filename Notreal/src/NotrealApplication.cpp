@@ -15,17 +15,17 @@ namespace Notreal
 {
 	NotrealApplication::NotrealApplication()
 	{
-		//NotrealWindow::Init();
-		//NotrealWindow::GetWindow()->Create(1000, 800);
+		NotrealWindow::Init();
+		NotrealWindow::GetWindow()->Create(1000, 800);
 
-		//Renderer::Init();
+		Renderer::Init();
 
-		//SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
+		SetWindowCloseCallback([this]() {DefaultWindowCloseHandler(); });
 		
 	}
 	void NotrealApplication::Initialize()
 	{
-
+		
 	}
 	void NotrealApplication::OnUpdate()
 	{
@@ -38,30 +38,38 @@ namespace Notreal
 	void NotrealApplication::Run()
 	{
 
-		NotrealWindow::Init();
-		NotrealWindow::GetWindow()->Create(1000, 800);
+		//NotrealWindow::Init();
+		//NotrealWindow::GetWindow()->Create(1000, 800);
 
-		Renderer::Init();
+		//Renderer::Init();
 
 		///////// Sharders ///////
 
-		Shader sProg{"C:\\Users\\qizon\\Desktop\\gameengine\\S24_Qizong_Liang\\Notreal\\Assets\\Shaders\\DefaultVertexShader.glsl","C:\\Users\\qizon\\Desktop\\gameengine\\S24_Qizong_Liang\\Notreal\\Assets\\Shaders\\DefaultFragmentShader.glsl" };
+		//Shader sProg{"C:\\Users\\qizon\\Desktop\\gameengine\\S24_Qizong_Liang\\Notreal\\Assets\\Shaders\\DefaultVertexShader.glsl","C:\\Users\\qizon\\Desktop\\gameengine\\S24_Qizong_Liang\\Notreal\\Assets\\Shaders\\DefaultFragmentShader.glsl" };
 
 		////////// Texture /////////
 
-		Notreal::Image pic{"C:\\Users\\qizon\\Desktop\\gameengine\\S24_Qizong_Liang\\Notreal\\Assets\\Textures\\test.png"};
-
+		//Notreal::Image pic{"..Assets\\test.png"};
+		//Notreal::Image picbg{ "..Assets\\hamburger.png" };
+		
+	
 		Initialize();
 
 		mNextFrameTime = std::chrono::steady_clock::now() + mFrameDuration;
 
-		int x{ 50 };
+		//int x{ 0 };
+		//int y{ 0 };
 
-		SetKeyPressedCallback([&x](const KeyPressed& event){
-			if (event.GetKeyCode() == NOTREAL_KEY_RIGHT)
-				x += 50;
-
-		});
+		//SetKeyPressedCallback([&x, &y](const KeyPressed& event){
+		//	if (event.GetKeyCode() == NOTREAL_KEY_RIGHT)
+		//		x += 50;
+		//	if (event.GetKeyCode() == NOTREAL_KEY_LEFT)
+		//		x -= 50;
+		//	if (event.GetKeyCode() == NOTREAL_KEY_UP)
+		//		y += 50;
+		//	if (event.GetKeyCode() == NOTREAL_KEY_DOWN)
+		//		y -= 50;
+		//});
 
 
 		while (mShouldContinue)
@@ -69,8 +77,8 @@ namespace Notreal
 			Renderer::ClearScreen();
 
 			OnUpdate();
-
-            Renderer::Draw(pic, x, 100);
+			//Renderer::Draw(picbg, 100, 00);
+            //Renderer::Draw(pic, x, y);
 
 			
 			std::this_thread::sleep_until(mNextFrameTime);
