@@ -50,7 +50,7 @@ if(MSVC)
 endif()
 
 target_include_directories(Notreal PRIVATE ../glfw/include)
-target_include_directories(Notreal PRIVATE ../Notreal)
+target_include_directories(Notreal PRIVATE ../Notreal/src)
 target_include_directories(Notreal PRIVATE ../glad/include)
 target_include_directories(Notreal PRIVATE ../stbi)
 
