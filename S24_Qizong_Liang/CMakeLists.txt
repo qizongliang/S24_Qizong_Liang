@@ -1,4 +1,4 @@
-add_executable(Game Source.cpp MyGame.h MyGame.cpp)
+add_executable(Game Source.cpp) 
 
 include_directories("../Notreal/include")
 

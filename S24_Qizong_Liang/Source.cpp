@@ -1,5 +1,6 @@
+#pragma once
+
 #include "Notreal.h"
-#include <iostream>
 #include <cstdlib>
 #include <time.h> 
 

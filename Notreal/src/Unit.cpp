@@ -48,15 +48,15 @@ namespace Notreal
 		int left_b{ b.mXPosition };
 		int right_b{ b.mXPosition + b.mImage.GetWidth() };
 
-		bool x_intersection{ (left_a <= left_b and left_b <= right_a) or (left_b <= left_a and left_a <= right_b) };
+		bool x_intersection{ (left_a <= left_b && left_b <= right_a) || (left_b <= left_a && left_a <= right_b) };
 
 		int bot_a{ a.mYPosition };
 		int top_a{ a.mYPosition + a.mImage.GetHeight()};
 		int bot_b{b.mYPosition};
 		int top_b{ b.mYPosition + b.mImage.GetHeight()};
 
-		bool y_intersection{ (bot_a <= bot_b and bot_b <= top_a) or (bot_b <= bot_a and bot_a <= top_b) };
+		bool y_intersection{ (bot_a <= bot_b && bot_b <= top_a) || (bot_b <= bot_a && bot_a <= top_b) };
 
-		return x_intersection and y_intersection;
+		return x_intersection && y_intersection;
 	}
 }
