@@ -9,3 +9,5 @@ the best way to chase after you.
 Initial game spawn 5 burger
 
 the pac man change direction depending on the direction he is going
+
+the pac man can travel out of bound and appear on the other side

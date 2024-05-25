@@ -8,8 +8,10 @@
 
 class MyGame : public Notreal::NotrealApplication
 {
-	//x = 0 left xPacMan = 900
-	//y = 0 down yPacMan = 700
+	//int xMon{900};
+	//int yMon{ 700 };
+	// x = -100 x = 1000 xpac=900 xpac=0
+	// y = -100 y = 800 ypac=700 ypac =0
 	// x = 900 right xPacMan = 0
 	// y = 700 up yPacMan = 0
 	void OnKeyPress(const Notreal::KeyPressed& event){
@@ -34,6 +36,20 @@ class MyGame : public Notreal::NotrealApplication
 			directionPac = "d";
 			// outofbound
 		}
+		if (xPacMan == -100) {
+			xPacMan = 900;
+		}
+		else if (xPacMan == 1000) {
+			xPacMan = 0;
+		}
+		else if (yPacMan == -100) {
+			yPacMan = 700;
+		}
+		else if (yPacMan == 800) {
+			yPacMan = 0;
+		}
+		// x = -100 x = 1000 xpac=900 xpac=0
+	// y = -100 y = 800 ypac=700 ypac =0
 		if (monRest == 2) {
 			chasePlayer();
 			monRest = 0;
@@ -56,9 +72,7 @@ class MyGame : public Notreal::NotrealApplication
 			xburgArr.erase(xburgArr.begin()+bXtemp, xburgArr.begin() + bXtemp+1);
 
 		}
-		for (int i = 0; i < 5; i++) {
-			std::cout << yBurg[i]<<" "<< xBurg[i] << std::endl;
-		}
+
 	}
 	
 	void detectGameOver()
@@ -91,9 +105,6 @@ class MyGame : public Notreal::NotrealApplication
 			if (xPacMan == xBurg[i] && yPacMan == yBurg[i])
 			{
 				burgAte += 1;
-
-				std::cout << "Burger " << xBurg[i] << " " << yBurg[i] << std::endl;
-				std::cout << "Pacman " << xPacMan << " " << yPacMan << std::endl;
 				xBurg[i] = -10000;
 				yBurg[i] = -10000;
 			}
