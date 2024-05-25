@@ -16,21 +16,45 @@ class MyGame : public Notreal::NotrealApplication
 			yPacMan += 100;
 		if (event.GetKeyCode() == NOTREAL_KEY_DOWN)
 			yPacMan -= 100;
+		if (monRest == 2) {
+			chasePlayer();
+			monRest = 0;
+		}
+		monRest += 1;
 	}
 	void generateBurger() 
 	{
 		srand(time(0));
 
-		int yburgArr[7] = { 100, 200, 300, 400, 500,600,700 };
+		int yburgArr[7] = { 100, 200, 300, 400, 500,600 };
 		yBurg = yburgArr[rand() % 7];
 
-		int xburgArr[9] = { 100, 200, 300, 400, 500,600,700,800,900 };
+		int xburgArr[9] = { 100, 200, 300, 400, 500,600,700,800 };
 		xBurg = xburgArr[rand() % 9];
 	}
 	void detectGameOver()
 	{
 		if (xPacMan == xBurg && yPacMan == yBurg) {
 			gameover = true;
+			win = true;
+		}
+		if (xPacMan == xMon && yPacMan == yMon) {
+			gameover = true;
+		}
+	}
+	void chasePlayer() 
+	{
+		if (yPacMan > yMon) {
+			yMon += 100;
+		}
+		else if (yPacMan < yMon) {
+			yMon -= 100;
+		}
+		else if (xPacMan < xMon) {
+			xMon -= 100;
+		}
+		else if (xPacMan > xMon) {
+			xMon += 100;
 		}
 	}
 	virtual void Initialize() override 
@@ -52,11 +76,23 @@ class MyGame : public Notreal::NotrealApplication
 			Notreal::Image picpac{ "../Assets/pacman.png" };
 			Notreal::Renderer::Draw(picbg, xBurg, yBurg);
 			Notreal::Renderer::Draw(picpac, xPacMan, yPacMan);
+
+			Notreal::Image picmon{ "../Assets/saladmonster.png" };
+			Notreal::Renderer::Draw(picmon, xMon, yMon);
+			
 			detectGameOver();
 		}
 		else {
-			Notreal::Image picBackGroundGameover{ "../Assets/gameover.png" };
-			Notreal::Renderer::Draw(picBackGroundGameover, 0, 0);
+
+			if (win) 
+			{
+				Notreal::Image picBackGroundGameover{ "../Assets/win.png" };
+				Notreal::Renderer::Draw(picBackGroundGameover, -10, -40);
+			}
+			else {
+				Notreal::Image picBackGroundGameover{ "../Assets/lose.png" };
+				Notreal::Renderer::Draw(picBackGroundGameover, -20,-80);
+			}
 		}
 
 		//Notreal::Renderer::Draw(pic, x, 100);
@@ -68,7 +104,14 @@ private:
 
 	int xBurg{0};
 	int yBurg{0};
+	
+	int xMon{900};
+	int yMon{700};
+
+	int monRest{ 0 };
 	bool gameover{ false };
+	bool win{ false };
+
 	
 };
 

@@ -1,0 +1,8 @@
+In this game you're a pacman trying to eat a burger, but the salad monster is trying to attack you. If the salad monster
+touch you. You die.
+
+Features
+
+Salad monster enemy can chase after you directly, but he is slower than you. However he is also very smart and knows
+the best way to chase after you.
+
