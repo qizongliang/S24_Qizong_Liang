@@ -1,5 +1,5 @@
 In this game you're a pacman trying to eat a burger, but the salad monster is trying to attack you. If the salad monster
-touch you. You die.
+touch you. You die. If you ate all the burger then you win!
 
 Features
 
@@ -10,4 +10,4 @@ Initial game spawn 5 burger
 
 the pac man change direction depending on the direction he is going
 
-the pac man can travel out of bound and appear on the other side
+the pac man can travel out of bound and appear on the opposite side
