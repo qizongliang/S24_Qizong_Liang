@@ -3,19 +3,37 @@
 #include "Notreal.h"
 #include <cstdlib>
 #include <time.h> 
-
+#include <string>
+#include <vector> 
 
 class MyGame : public Notreal::NotrealApplication
 {
+	//x = 0 left xPacMan = 900
+	//y = 0 down yPacMan = 700
+	// x = 900 right xPacMan = 0
+	// y = 700 up yPacMan = 0
 	void OnKeyPress(const Notreal::KeyPressed& event){
-		if (event.GetKeyCode() == NOTREAL_KEY_RIGHT)
+		if (event.GetKeyCode() == NOTREAL_KEY_RIGHT) {
+
 			xPacMan += 100;
-		if (event.GetKeyCode() == NOTREAL_KEY_LEFT)
+			directionPac = "r";
+			// outofbound
+		}
+		if (event.GetKeyCode() == NOTREAL_KEY_LEFT) {
 			xPacMan -= 100;
-		if (event.GetKeyCode() == NOTREAL_KEY_UP)
+			directionPac = "l";
+			// outofbound
+		}
+		if (event.GetKeyCode() == NOTREAL_KEY_UP) {
 			yPacMan += 100;
-		if (event.GetKeyCode() == NOTREAL_KEY_DOWN)
+			directionPac = "u";
+			// outofbound
+		}
+		if (event.GetKeyCode() == NOTREAL_KEY_DOWN) {
 			yPacMan -= 100;
+			directionPac = "d";
+			// outofbound
+		}
 		if (monRest == 2) {
 			chasePlayer();
 			monRest = 0;
@@ -26,15 +44,26 @@ class MyGame : public Notreal::NotrealApplication
 	{
 		srand(time(0));
 
-		int yburgArr[7] = { 100, 200, 300, 400, 500,600 };
-		yBurg = yburgArr[rand() % 7];
+		for (int i = 0; i < 5; i++) {
+			int bYtemp = rand() % yburgArr.size();
+			int bXtemp = rand() % xburgArr.size();
 
-		int xburgArr[9] = { 100, 200, 300, 400, 500,600,700,800 };
-		xBurg = xburgArr[rand() % 9];
+			yBurg[i] = yburgArr[bYtemp];
+			yburgArr.erase(yburgArr.begin()+bYtemp, yburgArr.begin() + bYtemp +1);
+
+			
+			xBurg[i] = xburgArr[bXtemp];
+			xburgArr.erase(xburgArr.begin()+bXtemp, xburgArr.begin() + bXtemp+1);
+
+		}
+		for (int i = 0; i < 5; i++) {
+			std::cout << yBurg[i]<<" "<< xBurg[i] << std::endl;
+		}
 	}
+	
 	void detectGameOver()
 	{
-		if (xPacMan == xBurg && yPacMan == yBurg) {
+		if (burgAte == 5) {
 			gameover = true;
 			win = true;
 		}
@@ -57,6 +86,19 @@ class MyGame : public Notreal::NotrealApplication
 			xMon += 100;
 		}
 	}
+	void ateBurger() {
+		for (int i = 0; i < 5; i++) {
+			if (xPacMan == xBurg[i] && yPacMan == yBurg[i])
+			{
+				burgAte += 1;
+
+				std::cout << "Burger " << xBurg[i] << " " << yBurg[i] << std::endl;
+				std::cout << "Pacman " << xPacMan << " " << yPacMan << std::endl;
+				xBurg[i] = -10000;
+				yBurg[i] = -10000;
+			}
+		}
+	}
 	virtual void Initialize() override 
 	{
 		generateBurger();
@@ -72,14 +114,27 @@ class MyGame : public Notreal::NotrealApplication
 			Notreal::Image picBackGround{ "../Assets/bg.png" };
 			Notreal::Renderer::Draw(picBackGround, 0, 0);
 
-			Notreal::Image picbg{ "../Assets/hamburger.png" };
-			Notreal::Image picpac{ "../Assets/pacman.png" };
-			Notreal::Renderer::Draw(picbg, xBurg, yBurg);
-			Notreal::Renderer::Draw(picpac, xPacMan, yPacMan);
-
+			
+			if (directionPac == "r") {
+				Notreal::Image picpac{ "../Assets/pacmanright.png" };
+				Notreal::Renderer::Draw(picpac, xPacMan, yPacMan);
+			}else if (directionPac == "d") {
+				Notreal::Image picpac{ "../Assets/pacmandown.png" };
+				Notreal::Renderer::Draw(picpac, xPacMan, yPacMan);
+			}else if (directionPac == "u") {
+				Notreal::Image picpac{ "../Assets/pacmanup.png" };
+				Notreal::Renderer::Draw(picpac, xPacMan, yPacMan);
+			}else if (directionPac == "l") {
+				Notreal::Image picpac{ "../Assets/pacmanleft.png" };
+				Notreal::Renderer::Draw(picpac, xPacMan, yPacMan);
+			}
+			for (int i = 0; i < 5; i++) {
+				Notreal::Image picbg{ "../Assets/hamburger.png" };
+				Notreal::Renderer::Draw(picbg, xBurg[i], yBurg[i]);
+			}
 			Notreal::Image picmon{ "../Assets/saladmonster.png" };
 			Notreal::Renderer::Draw(picmon, xMon, yMon);
-			
+			ateBurger();
 			detectGameOver();
 		}
 		else {
@@ -101,12 +156,18 @@ class MyGame : public Notreal::NotrealApplication
 private:
 	int xPacMan{ 0 };
 	int yPacMan{ 0 };
+	std::string directionPac = "r";
 
-	int xBurg{0};
-	int yBurg{0};
+
+	int xBurg[5]{0,0,0,0,0};
+	int yBurg[5]{0,0,0,0,0};
 	
 	int xMon{900};
 	int yMon{700};
+
+	std::vector<int> yburgArr = { 100, 200, 300, 400, 500,600 };
+	std::vector<int> xburgArr = { 100, 200, 300, 400, 500,600,700,800 };
+	int burgAte{ 0 };
 
 	int monRest{ 0 };
 	bool gameover{ false };
